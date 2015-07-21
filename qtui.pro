@@ -12,9 +12,13 @@ TARGET = qtui
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
+SOURCES +=     ArgoLoader.cpp \
+    torrentobserver.cpp \
+        main.cpp\
         mainwindow.cpp
 
-HEADERS  += mainwindow.h
+
+HEADERS  += mainwindow.h \
+    torrentobserver.h
 
 FORMS    += mainwindow.ui
