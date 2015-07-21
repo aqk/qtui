@@ -17,6 +17,10 @@ Window {
     property int navColItemHeight: 50
     property color navTextColor: "white"
 
+    // Create some properties for top peers and download list model
+    property variant downloadListModel
+    property variant topPeersModel
+
     color: "#f1eeee"
 
     // Load some fonts
@@ -162,6 +166,7 @@ Window {
                         Layout.fillHeight: true
                         Layout.preferredWidth: 150
                         Layout.preferredHeight: 300
+                        cardModel: topPeersModel
                     }
 
                     InfoCard {
@@ -171,6 +176,7 @@ Window {
                         Layout.fillHeight: true
                         Layout.preferredWidth: 400
                         Layout.preferredHeight: 300
+                        cardModel: downloadListModel
 
                     }
                 }

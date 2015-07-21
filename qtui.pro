@@ -6,7 +6,7 @@
 
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets qml quick
 
 TARGET = qtui
 TEMPLATE = app
@@ -15,12 +15,14 @@ TEMPLATE = app
 SOURCES +=     ArgoLoader.cpp \
     torrentobserver.cpp \
         main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    qtorrentobject.cpp
 
 
 HEADERS  += mainwindow.h \
     torrentobserver.h \
-    ArgoLoader.h
+    ArgoLoader.h \
+    qtorrentobject.h
 
 FORMS    += mainwindow.ui
 

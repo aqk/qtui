@@ -5,6 +5,7 @@ Rectangle {
     color: "#ffffff"
     radius: 4
     property string title: "..."
+    property variant cardModel
     ColumnLayout {
         anchors.fill: parent
         Text {
@@ -32,11 +33,22 @@ Rectangle {
             radius: 2
             color: "#C1C1C1"
         }
+        Component {
+                id: cardDelegate
+                Item {
+                    width: 180; height: 40
+                    Column {
+                        Text { text: '<b>Name:</b> ' + name }
+                        Text { text: '<b>Bytes DLed:</b> ' + downloadedBytes }
+                    }
+                }
+            }
 
         ListView {
             Layout.fillHeight: true
             Layout.preferredHeight: 300
-            model: ListModel {}
+            model: cardModel
+            delegate: cardDelegate
         }
     }
 }
