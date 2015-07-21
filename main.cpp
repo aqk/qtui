@@ -10,21 +10,7 @@
 #include "torrentobserver.h"
 
 using namespace Argo;
-#if 0
-class TorrentListObserver : public Argo::IUniverseEventObserver
-{
-public:
-        virtual void onTorrentAdded(const Argo::SHA1Hash &hash)
-        {
-                printf("Torrent Added\n");
-        }
 
-        virtual void onTorrentRemoved(const Argo::SHA1Hash &hash)
-        {
-                printf("Torrent Removed\n");
-        }
-};
-#endif
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);

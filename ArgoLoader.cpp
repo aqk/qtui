@@ -242,153 +242,155 @@ namespace Argo
     bool Universe::LoadDLL(const std::wstring &dll)
     {
         HMODULE argo_module = LoadLibrary(dll.c_str());
-        if (argo_module != NULL) {
-            _load_torrent_proc =
-                (LOADTORRENTPROC)GetProcAddress(argo_module, "LoadTorrent");
-            if (_load_torrent_proc == NULL) {
-                FreeLibrary(argo_module);
-                return false;
-            }
-            _create_universe_proc =
-                (CREATE_UNIVERSE_PROC)GetProcAddress(argo_module, "CreateUniverse");
-            if (_create_universe_proc == NULL) {
-                FreeLibrary(argo_module);
-                return false;
-            }
-            _destroy_universe_proc =
-                (DESTROY_UNIVERSE_PROC)GetProcAddress(argo_module, "DestroyUniverse");
-            if (_destroy_universe_proc == NULL) {
-                FreeLibrary(argo_module);
-                return false;
-            }
-            _remove_torrent_proc =
-                (REMOVE_TORRENT_PROC)GetProcAddress(argo_module, "RemoveTorrent");
-            if (_remove_torrent_proc == NULL) {
-                FreeLibrary(argo_module);
-                return false;
-            }
-            _set_external_ip_proc =
-                (SET_EXTERNAL_IP_PROC)GetProcAddress(argo_module, "SetExternalIP");
-            if (_set_external_ip_proc == NULL) {
-                FreeLibrary(argo_module);
-                return false;
-            }
-			_create_metadata_request_proc =
-				(CREATE_METADATA_REQUEST_PROC)GetProcAddress(argo_module, "CreateMetadataRequest");
-			if (_create_metadata_request_proc == NULL) {
-				FreeLibrary(argo_module);
-				return false;
-			}
-			_destroy_metadata_request_proc =
-				(DESTROY_METADATA_REQUEST_PROC)GetProcAddress(argo_module, "DestroyMetadataRequest");
-			if (_destroy_metadata_request_proc == NULL) {
-				FreeLibrary(argo_module);
-				return false;
-			}
-			_get_torrent_length_proc =
-				(GET_TORRENT_LENGTH_PROC)GetProcAddress(argo_module, "GetTorrentLength");
-			if (_get_torrent_length_proc == NULL) {
-				FreeLibrary(argo_module);
-				return false;
-			}
-			_get_torrent_infohash_proc =
-				(GET_TORRENT_INFOHASH_PROC)GetProcAddress(argo_module, "GetTorrentInfoHash");
-			if (_get_torrent_infohash_proc == NULL) {
-				FreeLibrary(argo_module);
-				return false;
-			}
-			_start_torrent_proc =
-				(START_TORRENT_PROC)GetProcAddress(argo_module, "StartTorrent");
-			if (_start_torrent_proc == NULL) {
-				FreeLibrary(argo_module);
-				return false;
-			}
-			_start_metadata_proc =
-				(START_TORRENT_PROC)GetProcAddress(argo_module, "StartMetadata");
-			if (_start_metadata_proc == NULL) {
-				FreeLibrary(argo_module);
-				return false;
-			}
-			_set_torrent_callbacks_proc =
-				(SET_TORRENT_CALLBACKS_PROC)GetProcAddress(argo_module, "SetTorrentCallbacks");
-			if (_set_torrent_callbacks_proc == NULL) {
-				FreeLibrary(argo_module);
-				return false;
-			}
-			_set_metadata_callbacks_proc =
-				(SET_METADATA_CALLBACKS_PROC)GetProcAddress(argo_module, "SetMetadataCallbacks");
-			if (_set_metadata_callbacks_proc == NULL) {
-				FreeLibrary(argo_module);
-				return false;
-			}
-			_lookup_torrent_proc =
-				(LOOKUP_TORRENT_PROC)GetProcAddress(argo_module, "LookupTorrent");
-			if (_lookup_torrent_proc == NULL) {
-				FreeLibrary(argo_module);
-				return false;
-			}
-			_lookup_metadata_proc =
-				(LOOKUP_METADATA_PROC)GetProcAddress(argo_module, "LookupMetadata");
-			if (_lookup_metadata_proc == NULL) {
-				FreeLibrary(argo_module);
-				return false;
-			}
-			_set_universe_target_dir_proc =
-				(SET_UNIVERSE_TARGET_DIR_PROC)GetProcAddress(argo_module, "SetTargetDirectory");
-			if (_set_universe_target_dir_proc == NULL) {
-				FreeLibrary(argo_module);
-				return false;
-			}
-			_get_torrent_have_piece_proc =
-				(GET_TORRENT_HAVE_PIECE_PROC)GetProcAddress(argo_module, "GetTorrentHavePiece");
-			if (_get_torrent_have_piece_proc == NULL) {
-				FreeLibrary(argo_module);
-				return false;
-			}
-			_create_stream_proc =
-				(CREATE_STREAM_PROC)GetProcAddress(argo_module, "CreateStream");
-			if (_create_stream_proc == NULL) {
-				FreeLibrary(argo_module);
-				return false;
-			}
-			_add_piece_to_stream_proc =
-				(ADD_PIECE_TO_STREAM_PROC)GetProcAddress(argo_module, "AddPieceToStream");
-			if (_add_piece_to_stream_proc == NULL) {
-				FreeLibrary(argo_module);
-				return false;
-			}
-			_release_piece_from_stream_proc =
-				(RELEASE_PIECE_FROM_STREAM_PROC)GetProcAddress(argo_module, "ReleasePieceFromStream");
-			if (_release_piece_from_stream_proc == NULL) {
-				FreeLibrary(argo_module);
-				return false;
-			}
-			_read_piece_from_stream_proc =
-				(READ_PIECE_FROM_STREAM_PROC)GetProcAddress(argo_module, "ReadFromStream");
-			if (_read_piece_from_stream_proc == NULL) {
-				FreeLibrary(argo_module);
-				return false;
-			}
-			_get_torrent_num_pieces_proc =
-				(GET_TORRENT_NUM_PIECES_PROC)GetProcAddress(argo_module, "GetTorrentNumPieces");
-			if (_get_torrent_num_pieces_proc == NULL) {
-				FreeLibrary(argo_module);
-				return false;
-			}
-			_get_torrent_piece_size_proc =
-				(GET_TORRENT_PIECE_SIZE_PROC)GetProcAddress(argo_module, "GetTorrentPieceSize");
-			if (_get_torrent_piece_size_proc == NULL) {
-				FreeLibrary(argo_module);
-				return false;
-			}
-
-			_callbacks.context = this;
-			_callbacks.added = &ArgoAddedTorrent;
-			_callbacks.removed = &ArgoRemovedTorrent;
-			_callbacks.port = &ArgoPort;
-
-            _container = _create_universe_proc(&_callbacks);
+        if (argo_module == NULL) {
+            return false;
         }
+
+        _load_torrent_proc =
+            (LOADTORRENTPROC)GetProcAddress(argo_module, "LoadTorrent");
+        if (_load_torrent_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _create_universe_proc =
+            (CREATE_UNIVERSE_PROC)GetProcAddress(argo_module, "CreateUniverse");
+        if (_create_universe_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _destroy_universe_proc =
+            (DESTROY_UNIVERSE_PROC)GetProcAddress(argo_module, "DestroyUniverse");
+        if (_destroy_universe_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _remove_torrent_proc =
+            (REMOVE_TORRENT_PROC)GetProcAddress(argo_module, "RemoveTorrent");
+        if (_remove_torrent_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _set_external_ip_proc =
+            (SET_EXTERNAL_IP_PROC)GetProcAddress(argo_module, "SetExternalIP");
+        if (_set_external_ip_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _create_metadata_request_proc =
+            (CREATE_METADATA_REQUEST_PROC)GetProcAddress(argo_module, "CreateMetadataRequest");
+        if (_create_metadata_request_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _destroy_metadata_request_proc =
+            (DESTROY_METADATA_REQUEST_PROC)GetProcAddress(argo_module, "DestroyMetadataRequest");
+        if (_destroy_metadata_request_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _get_torrent_length_proc =
+            (GET_TORRENT_LENGTH_PROC)GetProcAddress(argo_module, "GetTorrentLength");
+        if (_get_torrent_length_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _get_torrent_infohash_proc =
+            (GET_TORRENT_INFOHASH_PROC)GetProcAddress(argo_module, "GetTorrentInfoHash");
+        if (_get_torrent_infohash_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _start_torrent_proc =
+            (START_TORRENT_PROC)GetProcAddress(argo_module, "StartTorrent");
+        if (_start_torrent_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _start_metadata_proc =
+            (START_TORRENT_PROC)GetProcAddress(argo_module, "StartMetadata");
+        if (_start_metadata_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _set_torrent_callbacks_proc =
+            (SET_TORRENT_CALLBACKS_PROC)GetProcAddress(argo_module, "SetTorrentCallbacks");
+        if (_set_torrent_callbacks_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _set_metadata_callbacks_proc =
+            (SET_METADATA_CALLBACKS_PROC)GetProcAddress(argo_module, "SetMetadataCallbacks");
+        if (_set_metadata_callbacks_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _lookup_torrent_proc =
+            (LOOKUP_TORRENT_PROC)GetProcAddress(argo_module, "LookupTorrent");
+        if (_lookup_torrent_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _lookup_metadata_proc =
+            (LOOKUP_METADATA_PROC)GetProcAddress(argo_module, "LookupMetadata");
+        if (_lookup_metadata_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _set_universe_target_dir_proc =
+            (SET_UNIVERSE_TARGET_DIR_PROC)GetProcAddress(argo_module, "SetTargetDirectory");
+        if (_set_universe_target_dir_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _get_torrent_have_piece_proc =
+            (GET_TORRENT_HAVE_PIECE_PROC)GetProcAddress(argo_module, "GetTorrentHavePiece");
+        if (_get_torrent_have_piece_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _create_stream_proc =
+            (CREATE_STREAM_PROC)GetProcAddress(argo_module, "CreateStream");
+        if (_create_stream_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _add_piece_to_stream_proc =
+            (ADD_PIECE_TO_STREAM_PROC)GetProcAddress(argo_module, "AddPieceToStream");
+        if (_add_piece_to_stream_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _release_piece_from_stream_proc =
+            (RELEASE_PIECE_FROM_STREAM_PROC)GetProcAddress(argo_module, "ReleasePieceFromStream");
+        if (_release_piece_from_stream_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _read_piece_from_stream_proc =
+            (READ_PIECE_FROM_STREAM_PROC)GetProcAddress(argo_module, "ReadFromStream");
+        if (_read_piece_from_stream_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _get_torrent_num_pieces_proc =
+            (GET_TORRENT_NUM_PIECES_PROC)GetProcAddress(argo_module, "GetTorrentNumPieces");
+        if (_get_torrent_num_pieces_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+        _get_torrent_piece_size_proc =
+            (GET_TORRENT_PIECE_SIZE_PROC)GetProcAddress(argo_module, "GetTorrentPieceSize");
+        if (_get_torrent_piece_size_proc == NULL) {
+            FreeLibrary(argo_module);
+            return false;
+        }
+
+        _callbacks.context = this;
+        _callbacks.added = &ArgoAddedTorrent;
+        _callbacks.removed = &ArgoRemovedTorrent;
+        _callbacks.port = &ArgoPort;
+
+        _container = _create_universe_proc(&_callbacks);
         return true;
     }
 
