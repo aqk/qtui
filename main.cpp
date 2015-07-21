@@ -41,6 +41,13 @@ int main(int argc, char *argv[])
         return -1;
     }
 
+    // Load 2 torrents
+    QString torrent1_path("../qtui/CentOS-6.6-x86_64-minimal.ova.torrent");
+    QString torrent2_path("../qtui/ubuntu-15.04-desktop-amd64.iso.torrent");
+
+    std::shared_ptr<Argo::Torrent> torrent1 = universe->LoadTorrent(torrent1_path.toStdWString().c_str());
+    std::shared_ptr<Argo::Torrent> torrent2 = universe->LoadTorrent(torrent2_path.toStdWString().c_str());
+
     // Setup a by-value context
     // TODO: Tie in classes
     setupQmlContextByValue(engine);
