@@ -19,10 +19,10 @@ int main(int argc, char *argv[])
     QString torrent_file = w.LoadTorrentPicker();
 
     // Note: need wide string
-    std::shared_ptr<Argo::Universe> universe = Argo::Universe::Load(L"argo.dll");
+    std::shared_ptr<Argo::Universe> universe = Argo::Universe::Load(L"OldCoreShim.dll");
 
     if (!universe) {
-        QMessageBox::information(NULL, "Error! Error!", "Failed to load argo.dll");
+        QMessageBox::information(NULL, "Error! Error!", "Failed to load OldCoreShim.dll");
         return a.exec();
     }
 
