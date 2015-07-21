@@ -1,0 +1,17 @@
+
+How to use:
+
+Build https://github.com/bt-browser/dotnet-tools, branch 20150716-argo-metadata
+
+Copy the argo dlls to the qtui build directory. eg:
+  cp dotnet-tools/OldCoreShim/bin/x86/Debug/*.dll ~/build-qtui-Desktop_Qt_5_5_0_MSVC2012_32bit-Debug/debug/
+
+-----
+
+It seems you have to list .cpp files in qtui.pro in dependency order.
+
+-----
+
+See [bt-browser] ut_core/argo-loader-test for usage examples.
+
+-----
