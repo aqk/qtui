@@ -35,7 +35,8 @@ void MainWindow::on_pushButton_clicked()
 
     // XXX Calling SetDataRoot currently explodes
     _universe->SetDataRoot(L".");
-    TorrentListObserver torrentListObserver;
+
+    TorrentListObserver torrentListObserver(_torrList);
 
     _universe->AddObserver(&torrentListObserver);
 

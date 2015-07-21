@@ -31,6 +31,7 @@ private:
 
     std::shared_ptr<Argo::Universe> _universe;
     std::vector<std::shared_ptr<Argo::Torrent> > _torrents;
+    QList<QObject*> _torrList;
 };
 
 #endif // MAINWINDOW_H
