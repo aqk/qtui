@@ -12,8 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
 }
 
 QString MainWindow::LoadTorrentPicker() {
-    //return QFileDialog::getOpenFileName(this, tr("Open Torrent"), "", tr("Torrents (*.torrent)"));
-    return "";
+    return QFileDialog::getOpenFileName(this, tr("Open Torrent"), "", tr("Torrents (*.torrent)"));
 }
 
 MainWindow::~MainWindow()

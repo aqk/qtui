@@ -37,6 +37,10 @@ int main(int argc, char *argv[])
     std::mutex wait_mutex;
     std::condition_variable wait_for_torrent_complete;
 
+    if (!torrent) {
+        QMessageBox::information(NULL, "Error! Error!", "Failed to load Torrent: [torrent name]");
+        return a.exec();
+    }
     torrent->Start();
 
     return a.exec();
