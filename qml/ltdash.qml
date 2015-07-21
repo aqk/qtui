@@ -17,10 +17,6 @@ Window {
     property int navColItemHeight: 50
     property color navTextColor: "white"
 
-    // Create some properties for top peers and download list model
-    property variant downloadListModel
-    property variant topPeersModel
-
     color: "#f1eeee"
 
     // Load some fonts
@@ -149,40 +145,40 @@ Window {
                 Layout.maximumHeight: root.navColItemHeight + 20
                 Layout.minimumWidth: 650
                 searchFont: cousineFontBold.name
-             }
+            }
 
 
-                RowLayout {
-                    id: cardLayout
-                    spacing: 20
-                    anchors.left: searchBar.left
-                    anchors.right:searchBar.right
-                    anchors.leftMargin: 10
-                    anchors.rightMargin: 10
-                    InfoCard {
-                        id: topPeerCard
-                        title: "TOP PEERS"
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        Layout.preferredWidth: 150
-                        Layout.preferredHeight: 300
-                        cardModel: topPeersModel
-                    }
-
-                    InfoCard {
-                        id: mainDownloadList
-                        title: "TORRENT ACTIVITY"
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        Layout.preferredWidth: 400
-                        Layout.preferredHeight: 300
-                        cardModel: downloadListModel
-
-                    }
+            RowLayout {
+                id: cardLayout
+                spacing: 20
+                anchors.left: searchBar.left
+                anchors.right:searchBar.right
+                anchors.leftMargin: 10
+                anchors.rightMargin: 10
+                InfoCard {
+                    id: topPeerCard
+                    title: "TOP PEERS"
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.preferredWidth: 150
+                    Layout.preferredHeight: 300
+                    cardModel: topPeersModel
                 }
 
+                InfoCard {
+                    id: mainDownloadList
+                    title: "TORRENT ACTIVITY"
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.preferredWidth: 400
+                    Layout.preferredHeight: 300
+                    cardModel: downloadListModel
 
-      Item {
+                }
+            }
+
+
+            Item {
                 id: speedGraph
                 Layout.fillWidth: true
                 Layout.minimumWidth: 650

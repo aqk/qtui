@@ -14,16 +14,17 @@
 #include "qtorrentobject.h"
 
 using namespace Argo;
-void setupQmlContextByValue(const QQmlApplicationEngine& engine) {
+void setupQmlContextByValue(QQmlApplicationEngine& engine) {
     // Dummy model and data
     QList<QObject*> torrList;
     torrList.append(new QTorrentObject("A torrent.torrent", 1000));
     torrList.append(new QTorrentObject("B Torrent.torrent", 2000));
 
-
     // Get root context from the engine
     QQmlContext* rootCtx = engine.rootContext();
     rootCtx->setContextProperty("downloadListModel", QVariant::fromValue(torrList));
+    // TODO: Pass actual top peer state
+    rootCtx->setContextProperty("topPeersList", QVariant::fromValue(torrList));
 }
 
 int main(int argc, char *argv[])
@@ -33,7 +34,7 @@ int main(int argc, char *argv[])
 
     // Load the main qml
     QGuiApplication app(argc, argv);
-    QQmlApplicationEngine engine(QUrl(QStringLiteral("qrc:///ltdash.qml")));
+    QQmlApplicationEngine engine;
 
     if (!universe) {
         QMessageBox::information(NULL, "Error! Error!", "Failed to load OldCoreShim.dll");
@@ -43,6 +44,9 @@ int main(int argc, char *argv[])
     // Setup a by-value context
     // TODO: Tie in classes
     setupQmlContextByValue(engine);
+
+    // Load the root qml
+    engine.load(QUrl(QStringLiteral("qrc:///ltdash.qml")));
 
     // Run the application loop
     return app.exec();
