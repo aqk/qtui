@@ -22,3 +22,6 @@ HEADERS  += mainwindow.h \
     torrentobserver.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    qml/qml.qrc

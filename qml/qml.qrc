@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Analog.qml</file>
+        <file>Digital.qml</file>
+        <file>ltdash.qml</file>
+        <file>main.cpp</file>
+        <file>uiComponents/NavButton.qml</file>
+        <file>uiComponents/Cousine-Regular.ttf</file>
+        <file>uiComponents/Cousine-Bold.ttf</file>
+        <file>uiComponents/SearchBar.qml</file>
+        <file>uiComponents/InfoCard.qml</file>
+    </qresource>
+</RCC>
