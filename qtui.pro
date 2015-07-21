@@ -19,7 +19,8 @@ SOURCES +=     ArgoLoader.cpp \
 
 
 HEADERS  += mainwindow.h \
-    torrentobserver.h
+    torrentobserver.h \
+    ArgoLoader.h
 
 FORMS    += mainwindow.ui
 
