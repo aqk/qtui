@@ -17,7 +17,7 @@ Item {
 
     Rectangle {
         id: progressBG
-        color: "#d8d8d8"
+        color: "#eeeded"
         width: progressBar.pbWidth
         height: progressBar.pbHeight + 2.5
         radius: 2
