@@ -8,23 +8,34 @@
 #include <QtQml/QQmlApplicationEngine>
 #include <QtQml/QQmlContext>
 #include <QList>
+#include <QtConcurrent/QtConcurrent>
 
 #include "ArgoLoader.h"
 #include "torrentobserver.h"
-#include "qtorrentobject.h"
+#include "qtorrentlistmodel.h"
 
 using namespace Argo;
+
+QTorrentListModel g_torrentModel;
+
 void setupQmlContextByValue(QQmlApplicationEngine& engine) {
     // Dummy model and data
-    QList<QObject*> torrList;
-    torrList.append(new QTorrentObject("A torrent.torrent", 1000));
-    torrList.append(new QTorrentObject("B Torrent.torrent", 2000));
+
+    QSharedPointer<QTorrentObject> t1Obj(new QTorrentObject);
+    QSharedPointer<QTorrentObject> t2Obj(new QTorrentObject);
+
+    t1Obj->setName("Torrent A");
+    t1Obj->setTotalBytes(1000);
+    t2Obj->setName("Torrent B");
+    t2Obj->setTotalBytes(20000);
+
+    // Appends an initial copy
+    g_torrentModel.append(t1Obj);
+    g_torrentModel.append(t2Obj);
 
     // Get root context from the engine
     QQmlContext* rootCtx = engine.rootContext();
-    rootCtx->setContextProperty("downloadListModel", QVariant::fromValue(torrList));
-    // TODO: Pass actual top peer state
-    rootCtx->setContextProperty("topPeersList", QVariant::fromValue(torrList));
+    rootCtx->setContextProperty("downloadListModel", &g_torrentModel);
 }
 
 int main(int argc, char *argv[])
@@ -61,6 +72,20 @@ int main(int argc, char *argv[])
     // Setup a by-value context
     // TODO: Tie in classes
     setupQmlContextByValue(engine);
+
+
+    QSharedPointer<QTorrentObject> t3Obj(new QTorrentObject);
+    t3Obj->setName("Torrent C");
+    g_torrentModel.append(t3Obj);
+
+    // This is an incredibly silly (and unsafe) example.
+    // Wait 2 seconds then update the torrent name. Let the model
+    // know the data updated
+    QtConcurrent::run([t3Obj] {
+        QThread::sleep(1);
+        t3Obj->setName("Torrent DDD");
+        g_torrentModel.notifyOfUpdate(t3Obj);
+    });
 
     // Load the root qml
     engine.load(QUrl(QStringLiteral("qrc:///ltdash.qml")));

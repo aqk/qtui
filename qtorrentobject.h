@@ -8,34 +8,37 @@ class QTorrentObject : public QObject
     Q_OBJECT
 public:
     explicit QTorrentObject(QObject *parent = 0);
-    // Setup some metadata
-    Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
-    Q_PROPERTY(int downloadedBytes READ downloadedBytes WRITE setDownloadedBytes NOTIFY downloadedBytesChanged)
+    QTorrentObject(const QTorrentObject& obj);
+    Q_PROPERTY(QString name         READ name            WRITE setName NOTIFY nameChanged)
+    Q_PROPERTY(int speed            READ speed           WRITE setSpeed NOTIFY speedChanged)
+    Q_PROPERTY(int totalBytes       READ totalBytes      WRITE setTotalBytes NOTIFY totalBytesChanged)
+    Q_PROPERTY(int bytesDownloaded  READ bytesDownloaded WRITE setBytesDownloaded NOTIFY bytesDownloadedChanged)
 
-    QTorrentObject(const QString& name, int dled);
+    // Getters/Setters
+    int bytesDownloaded() const;
+    void setBytesDownloaded(int bytesDownloaded);
 
-    // Setters
-    void setName(const QString& name) {
-        this->m_name = name;
-        emit nameChanged(name);
-    }
-    void setDownloadedBytes(int dledBytes) {
-        this->m_downloadedBytes = dledBytes;
-        emit downloadedBytesChanged(dledBytes);
-    }
+    int totalBytes() const;
+    void setTotalBytes(int totalBytes);
 
-    // Getters
-    QString name() { return m_name; }
-    int downloadedBytes() { return m_downloadedBytes; }
+    int speed() const;
+    void setSpeed(int speed);
 
-private:
-    QString m_name;
-    int m_downloadedBytes;
+    QString name() const;
+    void setName(const QString &name);
+
 signals:
     void nameChanged(QString newName);
-    void downloadedBytesChanged(int dled);
+    void speedChanged(int newSpeed);
+    void totalBytesChanged(int newTotalBytes);
+    void bytesDownloadedChanged(int newBytesDownloaded);
 
 public slots:
+private:
+    QString m_name;
+    int m_speed;
+    int m_totalBytes;
+    int m_bytesDownloaded;
 };
 
 #endif // QTORRENTOBJECT_H

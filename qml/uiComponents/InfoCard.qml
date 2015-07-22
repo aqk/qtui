@@ -39,7 +39,7 @@ Rectangle {
                     width: 180; height: 40
                     Column {
                         Text { text: '<b>Name:</b> ' + name }
-                        Text { text: '<b>Bytes DLed:</b> ' + downloadedBytes }
+                        Text { text: '<b>Bytes DLed:</b> ' + bytesDownloaded }
                     }
                 }
             }
