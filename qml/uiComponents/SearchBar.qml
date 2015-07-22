@@ -4,7 +4,6 @@ import QtQuick.Dialogs 1.2
 
 Rectangle {
     color: "#ffffff"
-    property string searchFont: ""
     property variant buttonHandler
     property string defaultText: ""
     RowLayout {
@@ -34,7 +33,6 @@ Rectangle {
             anchors.verticalCenter: parent.verticalCenter
             font.pointSize: 20
             font.bold: true
-            font.family: searchFont
             text: defaultText
             clip:true
             cursorVisible: true
@@ -47,12 +45,11 @@ Rectangle {
             Layout.preferredHeight: 30
             color: "#333643"
             radius: 3
-            Text {
+            UIText {
                 id: loadTorrentText
                 color: "#FDFDFD"
                 anchors.centerIn: parent
                 text: "LOAD TORRENT"
-                font.family: searchFont
                 font.bold: true
                 font.pixelSize: 10
             }

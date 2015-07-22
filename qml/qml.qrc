@@ -2,11 +2,10 @@
     <qresource prefix="/">
         <file>ltdash.qml</file>
         <file>uiComponents/NavButton.qml</file>
-        <file>uiComponents/Cousine-Regular.ttf</file>
-        <file>uiComponents/Cousine-Bold.ttf</file>
         <file>uiComponents/SearchBar.qml</file>
         <file>uiComponents/InfoCard.qml</file>
-        <file>uiComponents/OpenSans-Regular.ttf</file>
-        <file>uiComponents/OpenSans-Semibold.ttf</file>
+        <file>uiComponents/UIText.qml</file>
+        <file>uiComponents/fonts/OpenSans-Regular.ttf</file>
+        <file>uiComponents/fonts/OpenSans-Semibold.ttf</file>
     </qresource>
 </RCC>

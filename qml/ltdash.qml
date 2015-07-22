@@ -19,16 +19,6 @@ Window {
 
     color: "#f1eeee"
 
-    // Load some fonts
-    FontLoader {
-        id: uiFont
-        source: "uiComponents/OpenSans-Regular.ttf"
-    }
-    FontLoader {
-        id: uiFontBold
-        source: "uiComponents/OpenSans-Semibold.ttf"
-    }
-
 
     function getSize() {
         return "0%";
@@ -71,24 +61,22 @@ Window {
                     radius: 20
                 }
 
-                Text {
+                UIText {
                     id: prodName
                     anchors.left: logoDisk.right
                     anchors.leftMargin: 10
                     anchors.verticalCenter: logoDisk.verticalCenter
                     anchors.verticalCenterOffset: -5
                     text: "LTDASH"
-                    font.family: uiFontBold.name
                     font.bold: true
                     font.pixelSize: 15
                     color: "#f6f2fd"
                 }
-                Text {
+                UIText {
                     id: revision
                     anchors.top: prodName.bottom
                     anchors.left: prodName.left
                     text: "DEV"
-                    font.family: uiFont.name
                     font.bold: true
                     font.pixelSize: 10
                     color: "lightgrey"
@@ -103,7 +91,6 @@ Window {
                     Layout.maximumHeight: root.navColItemHeight
                     Layout.preferredWidth: root.navColWidth
                     navText: modelData
-                    navFont: uiFont.name
                 }
 
             }
@@ -112,20 +99,18 @@ Window {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 color: "#2b2d39"
-                Text {
+                UIText {
                     id: progressPercentage
                     anchors.centerIn: parent
-                    font.family: uiFontBold.name
                     font.pixelSize: 30
                     font.bold: true
                     color: navTextColor
                     text: getSize()
                 }
-                Text {
+                UIText {
                     id: completedText
                     anchors.horizontalCenter: progressPercentage.horizontalCenter
                     anchors.top: progressPercentage.bottom
-                    font.family: uiFont.name
                     font.pixelSize: 10
                     font.bold: true
                     color: "white"
@@ -145,7 +130,6 @@ Window {
                 Layout.preferredHeight: root.navColItemHeight + 20
                 Layout.maximumHeight: root.navColItemHeight + 20
                 Layout.minimumWidth: 650
-                searchFont: uiFontBold.name
                 buttonHandler: argoContext
                 defaultText: "FILTER ..."
             }
@@ -166,8 +150,6 @@ Window {
                     Layout.preferredWidth: 150
                     Layout.preferredHeight: 300
                     cardModel: topPeersModel
-                    cardFont: uiFont.name
-                    cardFontBold: uiFontBold.name
                 }
 
                 InfoCard {
@@ -178,8 +160,6 @@ Window {
                     Layout.preferredWidth: 400
                     Layout.preferredHeight: 300
                     cardModel: downloadListModel
-                    cardFont: uiFont.name
-                    cardFontBold: uiFontBold.name
                 }
             }
 

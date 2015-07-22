@@ -1,23 +1,20 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
 
+
 Rectangle {
     color: "#ffffff"
     radius: 4
     property string cardTitle
     property variant cardModel
-    property string cardFont
-    property string cardFontBold
-    font.family: uiFontBold.name
 
     ColumnLayout {
         anchors.fill: parent
         spacing: 3
-        Text {
+        UIText {
             id: title
             text: cardTitle
             font.pixelSize: 13
-            font.family: cardFontBold
             font.bold: true
             color: "#c1c1c1"
             Layout.preferredHeight: 15
@@ -54,31 +51,36 @@ Rectangle {
                                id: statusButton
                                width: 60
                                height: 15
-                               radius: 4
+                               radius: 2
                                color: "#D0EAF3"
-                               Text {
+                               UIText {
                                    text: "WAITING"
                                    color: "white"
                                    font.bold: true
-                                   scale: 0.8
-                                   font.family: uiFontBold.name
+                                   font.pixelSize: 7
                                    anchors.centerIn: parent
                                }
                            }
-                           Text {
+                           UIText {
                                text: Qt.formatDateTime(dateTimeAdded, "ddd dd")
-
+                               font.pixelSize: 7
+                               anchors.left: statusButton.left
+                               anchors.leftMargin: 3
+                               color: "#eaeaea"
                            }
-                           Text {
-                               text: Qt.formatDateTime(dateTimeAdded, "hh mm AP")
-
+                           UIText {
+                               text: Qt.formatDateTime(dateTimeAdded, "hh:mm AP")
+                               font.pixelSize: 7
+                               anchors.left: statusButton.left
+                               anchors.leftMargin: 3
+                               color: "#eaeaea"
                            }
                         }
 
                         // Content
                         Column {
-                            Text { text: name }
-                            Text { text: bytesDownloaded }
+                            UIText { text: name }
+                            UIText { text: bytesDownloaded }
                         }
                     }
                 }

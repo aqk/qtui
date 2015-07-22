@@ -3,7 +3,6 @@ import QtQuick 2.0
 Rectangle {
     color: mouseArea.containsMouse ? navButtonColorHover : navButtonColorUnselected
     property string navText: "..."
-    property string navFont: Arial
     property color navButtonColorUnselected: "#323542"
     property color navButtonColorSelected: "#1E202B"
     property color navButtonColorHover: "#262833"
@@ -16,14 +15,14 @@ Rectangle {
         Rectangle {
             id: icon
             anchors.verticalCenter: parent.verticalCenter
-            anchors.verticalCenterOffset: -1
+            anchors.verticalCenterOffset: 0
             width: 7
             height: 8
             radius:2
             color: "#989BA2"
         }
 
-        Text {
+        UIText {
             id: text
             text: navText
             anchors.verticalCenter: icon.anchors.verticalCenter
@@ -31,7 +30,6 @@ Rectangle {
             anchors.leftMargin: 3
             font.pixelSize:12
             font.bold: true
-            font.family: navFont
             color: "#989BA2"
         }
     }
