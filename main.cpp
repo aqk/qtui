@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
     universe->AddObserver(&torrentListObserver);
 
     // Load the main qml
-    QGuiApplication app(argc, argv);
+    QApplication app(argc, argv);
     QQmlApplicationEngine engine;
 
     if (!universe) {
