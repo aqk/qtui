@@ -7,7 +7,7 @@ QTorrentObject::QTorrentObject(QObject *parent) : QObject(parent)
 }
 
 QTorrentObject::QTorrentObject(const QString &name, int totalBytes)
-    : QObject()
+    : QTorrentObject()
 {
     m_name = name;
     m_totalBytes = totalBytes;

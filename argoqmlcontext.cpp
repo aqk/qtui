@@ -6,6 +6,7 @@ ArgoQMLContext::ArgoQMLContext(QObject *parent) : QObject(parent)
 {
     _universe = Argo::Universe::Load(L"OldCoreShim.dll");
     if (!_universe) {
+        // TODO: Can't do this because we have no QApplication yet...
         QMessageBox::information(NULL, "Error! Error!", "Failed to load OldCoreShim.dll");
     }
 }
