@@ -21,8 +21,6 @@ public:
     QString MainWindow::LoadTorrentPicker();
     ~MainWindow();
 
-    void setUniverse(const std::shared_ptr<Argo::Universe>& universe);
-
 private slots:
     void on_pushButton_clicked();
 

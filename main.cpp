@@ -29,8 +29,15 @@ void setupQmlContextByValue(QQmlApplicationEngine& engine) {
 
 int main(int argc, char *argv[])
 {
+    // Dummy data
+    QList<QObject*> torrList;
+    torrList.append(new QTorrentObject("CCCC torrent.torrent", 1000));
+
     // Load the argo DLL
     std::shared_ptr<Argo::Universe> universe(Argo::Universe::Load(L"OldCoreShim.dll"));
+    universe->SetDataRoot(L".");
+    TorrentListObserver torrentListObserver(torrList);
+    universe->AddObserver(&torrentListObserver);
 
     // Load the main qml
     QGuiApplication app(argc, argv);
@@ -47,6 +54,9 @@ int main(int argc, char *argv[])
 
     std::shared_ptr<Argo::Torrent> torrent1 = universe->LoadTorrent(torrent1_path.toStdWString().c_str());
     std::shared_ptr<Argo::Torrent> torrent2 = universe->LoadTorrent(torrent2_path.toStdWString().c_str());
+
+    torrent1->Start();
+    torrent2->Start();
 
     // Setup a by-value context
     // TODO: Tie in classes

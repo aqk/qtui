@@ -25,20 +25,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::setUniverse(const std::shared_ptr<Argo::Universe>& universe) {
-    _universe = universe;
-}
-
 void MainWindow::on_pushButton_clicked()
 {
     QString torrent_file = LoadTorrentPicker();
-
-    // XXX Calling SetDataRoot currently explodes
-    _universe->SetDataRoot(L".");
-
-    TorrentListObserver torrentListObserver(_torrList);
-
-    _universe->AddObserver(&torrentListObserver);
 
     std::shared_ptr<Argo::Torrent> torrent = _universe->LoadTorrent(torrent_file.toStdWString().c_str());
 
