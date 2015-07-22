@@ -164,17 +164,11 @@ Window {
             }
 
 
-            Item {
+            SpeedGraph {
                 id: speedGraph
                 Layout.fillWidth: true
                 Layout.minimumWidth: 650
                 Layout.preferredHeight: 200
-                Rectangle {
-                    color: "#666666"
-                    anchors.fill: parent
-                    height: 100
-                }
-
             }
 
 

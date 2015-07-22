@@ -8,5 +8,6 @@
         <file>uiComponents/fonts/OpenSans-Regular.ttf</file>
         <file>uiComponents/fonts/OpenSans-Semibold.ttf</file>
         <file>uiComponents/DLProgressBar.qml</file>
+        <file>uiComponents/SpeedGraph.qml</file>
     </qresource>
 </RCC>
