@@ -1,9 +1,9 @@
 #include "qtorrentobject.h"
 
 QTorrentObject::QTorrentObject(QObject *parent) : QObject(parent)
-  , m_name(""), m_speed(0), m_totalBytes(0), m_bytesDownloaded(0)
+  , m_name(""), m_speed(0), m_totalBytes(0), m_bytesDownloaded(0), m_dateTimeAdded()
 {
-
+    m_dateTimeAdded = QDateTime::currentDateTime();
 }
 
 QTorrentObject::QTorrentObject(const QString &name, int totalBytes)
@@ -19,7 +19,7 @@ QTorrentObject::QTorrentObject(const QTorrentObject &obj) {
     m_speed = obj.m_speed;
     m_totalBytes = obj.m_totalBytes;
     m_bytesDownloaded = obj.m_bytesDownloaded;
-
+    m_dateTimeAdded = obj.m_dateTimeAdded;
 }
 
 int QTorrentObject::bytesDownloaded() const
@@ -61,6 +61,17 @@ void QTorrentObject::setName(const QString &name)
 {
     m_name = name;
     emit nameChanged(name);
+}
+
+QDateTime QTorrentObject::dateTimeAdded() const
+{
+    return m_dateTimeAdded;
+}
+
+void QTorrentObject::setdateTimeAdded(const QDateTime &dateTimeAdded)
+{
+    m_dateTimeAdded = dateTimeAdded;
+    emit dateTimeAddedChanged(dateTimeAdded);
 }
 
 

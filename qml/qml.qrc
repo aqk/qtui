@@ -6,5 +6,7 @@
         <file>uiComponents/Cousine-Bold.ttf</file>
         <file>uiComponents/SearchBar.qml</file>
         <file>uiComponents/InfoCard.qml</file>
+        <file>uiComponents/OpenSans-Regular.ttf</file>
+        <file>uiComponents/OpenSans-Semibold.ttf</file>
     </qresource>
 </RCC>

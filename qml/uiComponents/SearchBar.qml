@@ -6,6 +6,7 @@ Rectangle {
     color: "#ffffff"
     property string searchFont: ""
     property variant buttonHandler
+    property string defaultText: ""
     RowLayout {
         spacing: 10
         anchors.fill: parent
@@ -34,7 +35,7 @@ Rectangle {
             font.pointSize: 20
             font.bold: true
             font.family: searchFont
-            text: "Filter ..."
+            text: defaultText
             clip:true
             cursorVisible: true
         }

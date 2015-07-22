@@ -8,6 +8,7 @@ QTorrentListModel::QTorrentListModel(QObject *parent)
     m_roleNames[SpeedRole] = "speed";
     m_roleNames[TotalBytesRole] = "totalBytes";
     m_roleNames[BytesDownloadedRole] = "bytesDownloaded";
+    m_roleNames[dateTimeAddedRole] = "dateTimeAdded";
 }
 
 int QTorrentListModel::rowCount(const QModelIndex &parent) const
@@ -32,6 +33,8 @@ QVariant QTorrentListModel::data(const QModelIndex &index, int role) const {
             return torrent->totalBytes();
         case BytesDownloadedRole:
             return torrent->bytesDownloaded();
+        case dateTimeAddedRole:
+            return torrent->dateTimeAdded();
     }
 
     // Fallthrough

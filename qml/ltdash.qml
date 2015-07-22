@@ -21,13 +21,14 @@ Window {
 
     // Load some fonts
     FontLoader {
-        id: cousineFont
-        source: "uiComponents/Cousine-Regular.ttf"
+        id: uiFont
+        source: "uiComponents/OpenSans-Regular.ttf"
     }
     FontLoader {
-        id: cousineFontBold
-        source: "uiComponents/Cousine-Bold.ttf"
+        id: uiFontBold
+        source: "uiComponents/OpenSans-Semibold.ttf"
     }
+
 
     function getSize() {
         return "0%";
@@ -77,7 +78,7 @@ Window {
                     anchors.verticalCenter: logoDisk.verticalCenter
                     anchors.verticalCenterOffset: -5
                     text: "LTDASH"
-                    font.family: cousineFontBold.name
+                    font.family: uiFontBold.name
                     font.bold: true
                     font.pixelSize: 15
                     color: "#f6f2fd"
@@ -87,7 +88,7 @@ Window {
                     anchors.top: prodName.bottom
                     anchors.left: prodName.left
                     text: "DEV"
-                    font.family: cousineFont.name
+                    font.family: uiFont.name
                     font.bold: true
                     font.pixelSize: 10
                     color: "lightgrey"
@@ -102,7 +103,7 @@ Window {
                     Layout.maximumHeight: root.navColItemHeight
                     Layout.preferredWidth: root.navColWidth
                     navText: modelData
-                    navFont: cousineFont.name
+                    navFont: uiFont.name
                 }
 
             }
@@ -114,7 +115,7 @@ Window {
                 Text {
                     id: progressPercentage
                     anchors.centerIn: parent
-                    font.family: cousineFontBold.name
+                    font.family: uiFontBold.name
                     font.pixelSize: 30
                     font.bold: true
                     color: navTextColor
@@ -124,7 +125,7 @@ Window {
                     id: completedText
                     anchors.horizontalCenter: progressPercentage.horizontalCenter
                     anchors.top: progressPercentage.bottom
-                    font.family: cousineFont.name
+                    font.family: uiFont.name
                     font.pixelSize: 10
                     font.bold: true
                     color: "white"
@@ -144,8 +145,9 @@ Window {
                 Layout.preferredHeight: root.navColItemHeight + 20
                 Layout.maximumHeight: root.navColItemHeight + 20
                 Layout.minimumWidth: 650
-                searchFont: cousineFontBold.name
+                searchFont: uiFontBold.name
                 buttonHandler: argoContext
+                defaultText: "FILTER ..."
             }
 
 
@@ -158,23 +160,26 @@ Window {
                 anchors.rightMargin: 10
                 InfoCard {
                     id: topPeerCard
-                    title: "TOP PEERS"
+                    cardTitle: "TOP PEERS"
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     Layout.preferredWidth: 150
                     Layout.preferredHeight: 300
                     cardModel: topPeersModel
+                    cardFont: uiFont.name
+                    cardFontBold: uiFontBold.name
                 }
 
                 InfoCard {
                     id: mainDownloadList
-                    title: "TORRENT ACTIVITY"
+                    cardTitle: "TORRENT ACTIVITY"
                     Layout.fillWidth: true
                     Layout.fillHeight: true
                     Layout.preferredWidth: 400
                     Layout.preferredHeight: 300
                     cardModel: downloadListModel
-
+                    cardFont: uiFont.name
+                    cardFontBold: uiFontBold.name
                 }
             }
 
