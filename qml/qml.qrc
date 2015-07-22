@@ -9,5 +9,10 @@
         <file>uiComponents/fonts/OpenSans-Semibold.ttf</file>
         <file>uiComponents/DLProgressBar.qml</file>
         <file>uiComponents/SpeedGraph.qml</file>
+        <file>jbQuick/Charts/QChart.js</file>
+        <file>jbQuick/Charts/QChart.qml</file>
+        <file>jbQuick/Charts/QChartGallery.js</file>
+        <file>jbQuick/Charts/QChartGallery.qml</file>
+        <file>jbQuick/Charts/qmldir</file>
     </qresource>
 </RCC>

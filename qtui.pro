@@ -32,3 +32,5 @@ FORMS    += mainwindow.ui
 
 RESOURCES += \
     qml/qml.qrc
+
+QML_IMPORT_PATH += qml

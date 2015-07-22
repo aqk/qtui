@@ -98,6 +98,8 @@ int main(int argc, char *argv[])
 //        g_torrentModel.notifyOfUpdate(t3Obj);
 //    });
 
+    // Add qml to the path. Support jbQuick.Charts 1.0
+    engine.addImportPath(QStringLiteral("qml"));
     // Load the root qml
     engine.load(QUrl(QStringLiteral("qrc:///ltdash.qml")));
 

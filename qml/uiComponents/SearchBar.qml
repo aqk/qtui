@@ -36,6 +36,7 @@ Rectangle {
             text: defaultText
             clip:true
             cursorVisible: true
+
         }
         Rectangle {
             id: loadButton
