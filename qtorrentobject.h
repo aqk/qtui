@@ -8,6 +8,7 @@ class QTorrentObject : public QObject
     Q_OBJECT
 public:
     explicit QTorrentObject(QObject *parent = 0);
+    QTorrentObject(const QString& name, int totalBytes);
     QTorrentObject(const QTorrentObject& obj);
     Q_PROPERTY(QString name         READ name            WRITE setName NOTIFY nameChanged)
     Q_PROPERTY(int speed            READ speed           WRITE setSpeed NOTIFY speedChanged)

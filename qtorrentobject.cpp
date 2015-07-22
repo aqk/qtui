@@ -6,6 +6,14 @@ QTorrentObject::QTorrentObject(QObject *parent) : QObject(parent)
 
 }
 
+QTorrentObject::QTorrentObject(const QString &name, int totalBytes)
+    : QTorrentObject()
+{
+    m_name = name;
+    m_totalBytes = totalBytes;
+}
+
+
 QTorrentObject::QTorrentObject(const QTorrentObject &obj) {
     m_name = obj.m_name;
     m_speed = obj.m_speed;
