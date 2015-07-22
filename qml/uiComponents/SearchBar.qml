@@ -68,8 +68,11 @@ Rectangle {
                 title: "Select a torrent"
                 folder: "."
                 onAccepted: {
+                    var path = fileDialog.fileUrl.toString()
+                    // remove prefixed "file:///"
+                    path = path.replace(/^(file:\/{3})/, "")
                     // Call into the C++ side
-                    buttonHandler.loadTorrentClicked(fileDialog.fileUrl)
+                    buttonHandler.loadTorrentClicked(path)
                 }
             }
 
