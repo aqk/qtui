@@ -136,12 +136,31 @@ Rectangle {
                     height: 1
                     visible: index !== 0 ? true : false
                 }
+
+                MouseArea {
+                    anchors.fill:parent
+                    onClicked: listItem.ListView.view.currentIndex = index
+                }
             }
 
         }
 
 
+        Component {
+            id: highlightItem
+            Rectangle {
+                width: listView.currentItem.width
+                height: 2
+                z: 4
+                color: "#88eaff"
+                // Set highlight bar at the bottom
+                y: listView.currentItem.y + listView.currentItem.height
+                Behavior on y { SpringAnimation { spring: 2; damping: 0.1} }
+            }
+        }
+
         ListView {
+            id: listView
             Layout.fillHeight: true
             Layout.preferredHeight: 300
             anchors.top: sep.bottom
@@ -150,6 +169,9 @@ Rectangle {
             anchors.right: sep.right
             model: cardModel
             delegate: cardDelegate
+            highlight: highlightItem
+            highlightFollowsCurrentItem: false
+            focus: true
         }
     }
 }
