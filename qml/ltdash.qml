@@ -145,6 +145,7 @@ Window {
                 Layout.maximumHeight: root.navColItemHeight + 20
                 Layout.minimumWidth: 650
                 searchFont: cousineFontBold.name
+                buttonHandler: argoContext
             }
 
 

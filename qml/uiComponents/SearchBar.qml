@@ -1,10 +1,11 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
+import QtQuick.Dialogs 1.2
 
 Rectangle {
     color: "#ffffff"
     property string searchFont: ""
-
+    property variant buttonHandler
     RowLayout {
         spacing: 10
         anchors.fill: parent
@@ -46,6 +47,7 @@ Rectangle {
             color: "#333643"
             radius: 3
             Text {
+                id: loadTorrentText
                 color: "#FDFDFD"
                 anchors.centerIn: parent
                 text: "LOAD TORRENT"
@@ -53,6 +55,36 @@ Rectangle {
                 font.bold: true
                 font.pixelSize: 10
             }
+            MouseArea {
+                id: mouseArea
+                hoverEnabled: true
+                anchors.fill: parent
+                onClicked: {
+                    // Launch the file selection dialog
+                    fileDialog.visible = true
+                }
+            }
+
+            FileDialog {
+                id: fileDialog
+                title: "Select a torrent"
+                folder: "."
+                onAccepted: {
+                    // Call into the C++ side
+                    buttonHandler.loadTorrentClicked(fileDialog.fileUrl)
+                }
+            }
+
+            states: State {
+               name: "hovered"; when: mouseArea.containsMouse
+               PropertyChanges { target: loadButton; color: "#636363" }
+               PropertyChanges { target: loadTorrentText; color: "#ffffff" }
+            }
+
+            transitions: Transition {
+                ColorAnimation { properties: "color"; easing.type: Easing.InOutQuad; duration: 300; target: loadTorrentText }
+            }
+
         }
     }
 }

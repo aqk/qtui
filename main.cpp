@@ -13,12 +13,15 @@
 #include "ArgoLoader.h"
 #include "torrentobserver.h"
 #include "qtorrentlistmodel.h"
-
+#include "argoqmlcontext.h"
 using namespace Argo;
 
+ArgoQMLContext g_argoQmlContext;
+
+// TODO: This does not need to be global
 QTorrentListModel g_torrentModel;
 
-void setupQmlContextByValue(QQmlApplicationEngine& engine) {
+void InitializeQMLContext(QQmlApplicationEngine& engine) {
     // Dummy model and data
 
     QSharedPointer<QTorrentObject> t1Obj(new QTorrentObject);
@@ -36,6 +39,9 @@ void setupQmlContextByValue(QQmlApplicationEngine& engine) {
     // Get root context from the engine
     QQmlContext* rootCtx = engine.rootContext();
     rootCtx->setContextProperty("downloadListModel", &g_torrentModel);
+    // TODO: add a peers list model
+
+    rootCtx->setContextProperty("argoContext", &g_argoQmlContext);
 }
 
 int main(int argc, char *argv[])
@@ -69,16 +75,15 @@ int main(int argc, char *argv[])
     torrent1->Start();
     torrent2->Start();
 
-    // Setup a by-value context
-    // TODO: Tie in classes
-    setupQmlContextByValue(engine);
+    // Setup context
+    InitializeQMLContext(engine);
 
 
     QSharedPointer<QTorrentObject> t3Obj(new QTorrentObject);
     t3Obj->setName("Torrent C");
     g_torrentModel.append(t3Obj);
 
-    // This is an incredibly silly (and unsafe) example.
+    // TODO: REMOVE. This is an incredibly silly (and unsafe) example.
     // Wait 2 seconds then update the torrent name. Let the model
     // know the data updated
     QtConcurrent::run([t3Obj] {

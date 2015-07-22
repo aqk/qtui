@@ -17,14 +17,16 @@ SOURCES +=     ArgoLoader.cpp \
         main.cpp\
         mainwindow.cpp \
     qtorrentlistmodel.cpp \
-    qtorrentobject.cpp
+    qtorrentobject.cpp \
+    argoqmlcontext.cpp
 
 
 HEADERS  += mainwindow.h \
     torrentobserver.h \
     ArgoLoader.h \
     qtorrentlistmodel.h \
-    qtorrentobject.h
+    qtorrentobject.h \
+    argoqmlcontext.h
 
 FORMS    += mainwindow.ui
 
