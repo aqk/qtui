@@ -7,5 +7,6 @@
         <file>uiComponents/UIText.qml</file>
         <file>uiComponents/fonts/OpenSans-Regular.ttf</file>
         <file>uiComponents/fonts/OpenSans-Semibold.ttf</file>
+        <file>uiComponents/DLProgressBar.qml</file>
     </qresource>
 </RCC>

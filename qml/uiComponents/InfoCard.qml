@@ -4,10 +4,11 @@ import QtQuick.Layouts 1.1
 
 Rectangle {
     color: "#ffffff"
-    radius: 4
+    radius: 2
     property string cardTitle
     property variant cardModel
-
+    property int itemHeight: 50
+    property color separatorColor: "#eaeaea"
     ColumnLayout {
         anchors.fill: parent
         spacing: 3
@@ -37,54 +38,108 @@ Rectangle {
             anchors.topMargin: 5
             height: 1.5
             radius: 1
-            color: "#eaeaea"
+            color: separatorColor
         }
 
         Component {
-                id: cardDelegate
-                Item {
-                    width: 180; height: 40
-                    Row {
-                        // Status
-                        Column {
-                           Rectangle {
-                               id: statusButton
-                               width: 60
-                               height: 15
-                               radius: 2
-                               color: "#D0EAF3"
-                               UIText {
-                                   text: "WAITING"
-                                   color: "white"
-                                   font.bold: true
-                                   font.pixelSize: 7
-                                   anchors.centerIn: parent
-                               }
-                           }
-                           UIText {
-                               text: Qt.formatDateTime(dateTimeAdded, "ddd dd")
-                               font.pixelSize: 7
-                               anchors.left: statusButton.left
-                               anchors.leftMargin: 3
-                               color: "#eaeaea"
-                           }
-                           UIText {
-                               text: Qt.formatDateTime(dateTimeAdded, "hh:mm AP")
-                               font.pixelSize: 7
-                               anchors.left: statusButton.left
-                               anchors.leftMargin: 3
-                               color: "#eaeaea"
-                           }
-                        }
+            id: cardDelegate
+            Item {
+                id: listItem
+                anchors.left: parent.left
+                anchors.right: parent.right
+                height: itemHeight
 
-                        // Content
-                        Column {
-                            UIText { text: name }
-                            UIText { text: bytesDownloaded }
+                RowLayout {
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    spacing: 5
+                    // Status
+                    ColumnLayout {
+                        id: statusColumn
+                        Rectangle {
+                            id: statusButton
+                            width: 50
+                            height: 15
+                            radius: 2
+                            color: "#2bcaff"
+                            UIText {
+                                text: "WAITING"
+                                color: "white"
+                                font.bold: true
+                                font.pixelSize: 7
+                                anchors.centerIn: parent
+                            }
+                        }
+                        UIText {
+                            text: Qt.formatDateTime(dateTimeAdded, "ddd dd")
+                            font.pixelSize: 7
+                            anchors.left: statusButton.left
+                            anchors.leftMargin: 3
+                            color: "#bababa"
+                        }
+                        UIText {
+                            text: Qt.formatDateTime(dateTimeAdded, "hh:mm AP")
+                            font.pixelSize: 7
+                            anchors.left: statusButton.left
+                            anchors.leftMargin: 3
+                            color: "#bababa"
                         }
                     }
+                    // Vertical separator
+                    Rectangle {
+                        width: 1
+                        height: itemHeight
+                        color: separatorColor
+                    }
+
+                    // Content
+                    RowLayout {
+                        id: contentColumn
+                        Rectangle {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            Layout.preferredHeight: itemHeight
+                            Layout.preferredWidth: 200
+                            Layout.minimumWidth: 100
+                            UIText {
+                                text: name
+                                color: "#3a3a3a"
+                                font.pixelSize: 15
+                                anchors.left: parent.left
+                                anchors.leftMargin: 9
+                                anchors.top: parent.top
+                                anchors.topMargin: 9
+                            }
+                        }
+                        DLProgressBar {
+                            Layout.fillWidth: true
+                            Layout.fillHeight: true
+                            Layout.minimumWidth: 50
+                            Layout.preferredWidth: 100
+                            anchors.right: parent.right
+                            total: totalBytes
+                            completed: bytesDownloaded
+                            pbWidth: 100
+                            anchors.top: parent.top
+                            anchors.topMargin: 10
+                        }
+
+                    }
+                }
+
+                // Horiz separator
+                Rectangle {
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+
+                    color: separatorColor
+                    height: 1
+                    visible: index !== 0 ? true : false
                 }
             }
+
+        }
+
 
         ListView {
             Layout.fillHeight: true
