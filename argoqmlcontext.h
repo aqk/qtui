@@ -23,6 +23,7 @@ public slots:
 private:
     std::shared_ptr<Argo::Universe> _universe;
     std::shared_ptr<QTorrentListModel> _qt_list_model;
+    std::vector<std::shared_ptr<Argo::Torrent> > _torrents;
 };
 
 #endif // ARGOQMLCONTEXT_H

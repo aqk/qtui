@@ -1,6 +1,7 @@
 #include <QMessageBox>
 
 #include "argoqmlcontext.h"
+#include "torrentobserver.h"
 
 ArgoQMLContext::ArgoQMLContext(QObject *parent) : QObject(parent)
 {
@@ -9,6 +10,7 @@ ArgoQMLContext::ArgoQMLContext(QObject *parent) : QObject(parent)
         // TODO: Can't do this because we have no QApplication yet...
         QMessageBox::information(NULL, "Error! Error!", "Failed to load OldCoreShim.dll");
     }
+    _universe->SetDataRoot(L".");
 }
 
 void ArgoQMLContext::loadTorrentClicked(const QString &filePath)
@@ -22,6 +24,8 @@ void ArgoQMLContext::loadTorrentClicked(const QString &filePath)
         QMessageBox::information(NULL, "Error! Error!", "Failed to load torrent!");
         return;
     }
+    torrent->AddObserver(new TorrentFileObserver());
+    _torrents.push_back(torrent);
     torrent->Start();
 }
 
