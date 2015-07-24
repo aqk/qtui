@@ -14,6 +14,7 @@ void ArgoQMLContext::loadTorrentClicked(const QString &filePath)
         _universe = Argo::Universe::Load(L"OldCoreShim.dll");
         if (!_universe) {
             QMessageBox::information(NULL, "Error! Error!", "Failed to load OldCoreShim.dll");
+            return;
         }
         _universe->SetDataRoot(L".");
         _tlo = std::shared_ptr<TorrentListObserver>(new TorrentListObserver(&_qt_list_model));
