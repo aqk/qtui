@@ -33,7 +33,7 @@ public:
     virtual QVariant data(const QModelIndex &index, int role) const override;
 
     // Add insertion
-    bool insert(int index, QSharedPointer<QTorrentObject> torrent);
+    bool insert(int insert_index, QSharedPointer<QTorrentObject> torrent);
     bool append(QSharedPointer<QTorrentObject> torrent);
     QSharedPointer<QTorrentObject> get(int index);
     int count();

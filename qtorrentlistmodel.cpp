@@ -43,16 +43,17 @@ QVariant QTorrentListModel::data(const QModelIndex &index, int role) const {
 }
 
 
-bool QTorrentListModel::insert(int index, QSharedPointer<QTorrentObject>torrent)
+bool QTorrentListModel::insert(int insert_index, QSharedPointer<QTorrentObject>torrent)
 {
 
-    if (index < 0|| index > m_torrents.count())
+    if (insert_index < 0|| insert_index > m_torrents.count())
         return false;
 
     // Notify before insert, insert, notify after insert
-    emit beginInsertRows(QModelIndex(), index, index);
-    m_torrents.insert(index, torrent);
+    emit beginInsertRows(QModelIndex(), insert_index, insert_index);
+    m_torrents.insert(insert_index, torrent);
     emit countChanged(m_torrents.count());
+    emit endInsertRows();
     return true;
 }
 

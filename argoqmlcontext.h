@@ -6,6 +6,7 @@
 #include <memory>
 #include "ArgoLoader.h"
 #include "qtorrentlistmodel.h"
+#include "torrentobserver.h"
 
 class ArgoQMLContext : public QObject
 {
@@ -15,15 +16,16 @@ public:
     Q_INVOKABLE void loadTorrentClicked( const QString& filePath);
 
     std::shared_ptr<Argo::Universe> getUniverse() const { return _universe; }
-    std::shared_ptr<QTorrentListModel> getTorrentListModel() const { return _qt_list_model; }
+    QTorrentListModel* getTorrentListModel() { return &_qt_list_model; }
 
 signals:
 
 public slots:
 private:
     std::shared_ptr<Argo::Universe> _universe;
-    std::shared_ptr<QTorrentListModel> _qt_list_model;
+    QTorrentListModel _qt_list_model;
     std::vector<std::shared_ptr<Argo::Torrent> > _torrents;
+    std::shared_ptr<TorrentListObserver> _tlo;
 };
 
 #endif // ARGOQMLCONTEXT_H

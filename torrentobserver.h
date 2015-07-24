@@ -4,15 +4,18 @@
 #include <QList>
 #include <QObject>
 
+#include "qtorrentlistmodel.h"
+
 class TorrentListObserver : public Argo::IUniverseEventObserver
 {
 public:
-        TorrentListObserver(QList<QObject*>& torrList);
+        TorrentListObserver(QTorrentListModel* torrList);
         virtual void onTorrentAdded(const Argo::SHA1Hash &hash);
         virtual void onTorrentRemoved(const Argo::SHA1Hash &hash);
 
 private:
-        QList<QObject*>& _torrent_list;
+        QTorrentListModel* _qt_list_model;
+        QList<QSharedPointer<QTorrentObject> > _qtorrent_list;
 };
 
 class TorrentFileObserver : public Argo::ITorrentEventObserver {

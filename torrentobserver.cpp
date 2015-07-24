@@ -2,14 +2,22 @@
 #include "qtorrentobject.h"
 using namespace Argo;
 
+#include "qtorrentobject.h"
 
-TorrentListObserver::TorrentListObserver(QList<QObject*>& torrList) :
-    _torrent_list(torrList) {
+
+TorrentListObserver::TorrentListObserver(QTorrentListModel* torrList) :
+    _qt_list_model(torrList) {
 }
 
 void TorrentListObserver::onTorrentAdded(const Argo::SHA1Hash &hash)
 {
-    _torrent_list.append(new QTorrentObject("dummy.torrent", 0));
+    QSharedPointer<QTorrentObject> torrent(new QTorrentObject);
+    _qtorrent_list.append(torrent);
+
+    torrent->setName(hash.value);
+    torrent->setTotalBytes(1000);
+    _qt_list_model->append(torrent);
+    _qt_list_model->notifyOfUpdate(torrent);
     printf("Torrent Added\n");
 }
 

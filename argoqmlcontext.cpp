@@ -1,23 +1,26 @@
 #include <QMessageBox>
 
 #include "argoqmlcontext.h"
-#include "torrentobserver.h"
 
-ArgoQMLContext::ArgoQMLContext(QObject *parent) : QObject(parent)
+ArgoQMLContext::ArgoQMLContext(QObject *parent) : QObject(parent),
+    _universe(nullptr)
 {
-    _universe = Argo::Universe::Load(L"OldCoreShim.dll");
-    if (!_universe) {
-        // TODO: Can't do this because we have no QApplication yet...
-        QMessageBox::information(NULL, "Error! Error!", "Failed to load OldCoreShim.dll");
-    }
-    _universe->SetDataRoot(L".");
 }
 
 void ArgoQMLContext::loadTorrentClicked(const QString &filePath)
 {
-    // Add button was clicked. Go ahead and let argo know.
-    // TODO: Add code here
+    // Create the universe the first time we load a torrent
+    if(!_universe) {
+        _universe = Argo::Universe::Load(L"OldCoreShim.dll");
+        if (!_universe) {
+            QMessageBox::information(NULL, "Error! Error!", "Failed to load OldCoreShim.dll");
+        }
+        _universe->SetDataRoot(L".");
+        _tlo = std::shared_ptr<TorrentListObserver>(new TorrentListObserver(&_qt_list_model));
+        _universe->AddObserver(_tlo.get());
+    }
 
+    // Add button was clicked. Go ahead and let argo know.
     std::wstring path = filePath.toStdWString().c_str();
     std::shared_ptr<Argo::Torrent> torrent = _universe->LoadTorrent(path);
     if(!torrent) {
