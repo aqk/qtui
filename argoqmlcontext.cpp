@@ -34,5 +34,7 @@ void ArgoQMLContext::loadTorrentClicked(const QString &filePath)
 
     // Test NotifyBytesUpdated
     NotifyOfBytesReceived(1000);
+
+    NotifyOfTotalProgress(49);
 }
 

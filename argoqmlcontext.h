@@ -15,13 +15,13 @@ public:
     explicit ArgoQMLContext(QObject *parent = 0);
     Q_INVOKABLE void loadTorrentClicked( const QString& filePath);
     void NotifyOfBytesReceived(int bytes) { emit bytesReceived(bytes); }
-
+    void NotifyOfTotalProgress(int progress) { emit totalProgress(progress); }
     std::shared_ptr<Argo::Universe> getUniverse() const { return _universe; }
     QTorrentListModel* getTorrentListModel() { return &_qt_list_model; }
 
 signals:
     void bytesReceived(int bytes);
-
+    void totalProgress(int progress);
 public slots:
 private:
     std::shared_ptr<Argo::Universe> _universe;

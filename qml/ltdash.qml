@@ -22,9 +22,7 @@ Window {
     color: "#f1eeee"
 
 
-    function getSize() {
-        return "0%";
-    }
+
 
 
     RowLayout {
@@ -128,7 +126,14 @@ Window {
                     font.pixelSize: 30
                     font.bold: true
                     color: navTextColor
-                    text: getSize()
+                    text: "0%"
+
+                    Connections {
+                        target: argoContext
+                        onTotalProgress: {
+                              progressPercentage.text = progress + "%"
+                        }
+                    }
                 }
                 UIText {
                     id: completedText
@@ -187,15 +192,6 @@ Window {
                     visible:true
                 }
 
-                Component.onCompleted: state = "visible"
-                states: State {
-                   name: "visible"
-                   PropertyChanges { target: cardLayout; x: 100 }
-                }
-
-                transitions: Transition {
-                    PropertyAnimation { duration: 3000; easing.type: Easing.InOutQuad}
-                }
             }
 
 
