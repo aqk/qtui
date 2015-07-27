@@ -14,11 +14,13 @@ class ArgoQMLContext : public QObject
 public:
     explicit ArgoQMLContext(QObject *parent = 0);
     Q_INVOKABLE void loadTorrentClicked( const QString& filePath);
+    void NotifyOfBytesReceived(int bytes) { emit bytesReceived(bytes); }
 
     std::shared_ptr<Argo::Universe> getUniverse() const { return _universe; }
     QTorrentListModel* getTorrentListModel() { return &_qt_list_model; }
 
 signals:
+    void bytesReceived(int bytes);
 
 public slots:
 private:

@@ -169,6 +169,7 @@ Window {
                 Layout.fillWidth: true
                 Layout.minimumWidth: 650
                 Layout.preferredHeight: 200
+                context: argoContext
             }
 
 

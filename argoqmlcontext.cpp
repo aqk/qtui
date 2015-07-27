@@ -31,5 +31,8 @@ void ArgoQMLContext::loadTorrentClicked(const QString &filePath)
     torrent->AddObserver(new TorrentFileObserver());
     _torrents.push_back(torrent);
     torrent->Start();
+
+    // Test NotifyBytesUpdated
+    NotifyOfBytesReceived(1000);
 }
 
