@@ -50,7 +50,7 @@ Rectangle {
                 id: loadTorrentText
                 color: "#FDFDFD"
                 anchors.centerIn: parent
-                text: "LOAD TORRENT"
+                text: "ADD TORRENT"
                 font.bold: true
                 font.pixelSize: 10
             }
