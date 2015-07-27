@@ -4,25 +4,43 @@ import QtQuick.Dialogs 1.2
 
 Rectangle {
     color: "#ffffff"
+    id: searchBar
     property variant buttonHandler
     property string defaultText: ""
+    property color barColor: "grey"
+
     RowLayout {
         spacing: 10
         anchors.fill: parent
         anchors.leftMargin: 10
         anchors.rightMargin: 10
+
         Column {
             id: tripleBars
             spacing: 2
             Repeater {
                 model: 3
-            Rectangle {
-                width: 19
-                height: 5
-                radius: 2
-                color: "#E8E8E8"
-             }
+                delegate: Component {
+                    Rectangle {
+                        width: 10
+                        height: 3
+                        radius: 1
+                        color: barColor
+                    }
+                }
             }
+        }
+        MouseArea {
+            id: tripleBarsMouseArea
+            hoverEnabled: true
+            anchors.fill: tripleBars
+        }
+        states: State {
+            name: "hover"; when: tripleBarsMouseArea.containsMouse;
+            PropertyChanges {target: searchBar; barColor:"black"; }
+        }
+        transitions: Transition {
+            ColorAnimation { target: searchBar; properties: "barColor"; easing.type: Easing.InOutQuad; duration: 500}
         }
 
         TextInput {
@@ -32,7 +50,6 @@ Rectangle {
             Layout.preferredWidth: 400
             anchors.verticalCenter: parent.verticalCenter
             font.pointSize: 20
-            font.bold: true
             text: defaultText
             clip:true
             cursorVisible: true
@@ -46,6 +63,10 @@ Rectangle {
             Layout.preferredHeight: 30
             color: "#333643"
             radius: 3
+            ColorAnimation on color {
+                duration: 3000
+            }
+
             UIText {
                 id: loadTorrentText
                 color: "#FDFDFD"
@@ -82,10 +103,12 @@ Rectangle {
                PropertyChanges { target: loadButton; color: "#636363" }
                PropertyChanges { target: loadTorrentText; color: "#ffffff" }
             }
-
-            transitions: Transition {
-                ColorAnimation { properties: "color"; easing.type: Easing.InOutQuad; duration: 300; target: loadTorrentText }
-            }
+            transitions: [
+                Transition {
+                ColorAnimation { properties: "color"; easing.type: Easing.InOutQuad; duration: 700; target: loadTorrentText }
+            }, Transition {
+                ColorAnimation { properties: "color"; easing.type: Easing.InOutQuad; duration: 2000; target: loadButton }
+            }]
 
         }
     }
