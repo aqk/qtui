@@ -48,7 +48,7 @@ Item {
     Text {
         id: totalText
         text: progressBar.totalString
-        font.pixelSize: 9
+        font.pixelSize: 12
         anchors.top: progressBG.bottom
         anchors.right: progressBG.right
 
@@ -57,7 +57,7 @@ Item {
     Text {
         id: separator
         text: separatorString
-        font.pixelSize: 9
+        font.pixelSize: 12
         anchors.top: progressBG.bottom
         anchors.right: totalText.left
     }
@@ -65,7 +65,7 @@ Item {
     Text {
         id: completedText
         text: progressBar.completedString
-        font.pixelSize: 9
+        font.pixelSize: 12
         anchors.top: progressBG.bottom
         anchors.right: separator.left
         anchors.rightMargin: 2

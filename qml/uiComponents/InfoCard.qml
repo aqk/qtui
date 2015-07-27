@@ -7,7 +7,7 @@ Rectangle {
     radius: 2
     property string cardTitle
     property variant cardModel
-    property int itemHeight: 50
+    property int itemHeight: 65
     property color separatorColor: "#eaeaea"
 
     ColumnLayout {
@@ -16,7 +16,7 @@ Rectangle {
         UIText {
             id: title
             text: cardTitle
-            font.pixelSize: 10
+            font.pixelSize: 12
             color: "#c1c1c1"
             Layout.preferredHeight: 15
             Layout.fillHeight: true
@@ -58,28 +58,28 @@ Rectangle {
                         id: statusColumn
                         Rectangle {
                             id: statusButton
-                            width: 50
-                            height: 15
+                            width: 60
+                            height: 20
                             radius: 2
                             color: "#2bcaff"
                             UIText {
-                                text: "WAITING"
+                                text: status
                                 color: "white"
                                 font.bold: true
-                                font.pixelSize: 7
+                                font.pixelSize: 10
                                 anchors.centerIn: parent
                             }
                         }
                         UIText {
                             text: Qt.formatDateTime(dateTimeAdded, "ddd dd")
-                            font.pixelSize: 7
+                            font.pixelSize: 10
                             anchors.left: statusButton.left
                             anchors.leftMargin: 3
                             color: "#bababa"
                         }
                         UIText {
                             text: Qt.formatDateTime(dateTimeAdded, "hh:mm AP")
-                            font.pixelSize: 7
+                            font.pixelSize: 10
                             anchors.left: statusButton.left
                             anchors.leftMargin: 3
                             color: "#bababa"
@@ -105,7 +105,7 @@ Rectangle {
                                 text: name
                                 clip: true
                                 color: "#3a3a3a"
-                                font.pixelSize: 10
+                                font.pixelSize: 16
                                 anchors.left: parent.left
                                 anchors.leftMargin: 5
                                 anchors.top: parent.top

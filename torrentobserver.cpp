@@ -21,7 +21,7 @@ void TorrentListObserver::onTorrentAdded(const Argo::SHA1Hash &hash)
     //torrent->setName(hash.value);
     t_ctx->q_torrent->setTotalBytes(0);
     t_ctx->q_torrent->setHash(hash);
-    t_ctx->q_torrent->setStatus(QTorrentObject::Status::DOWNLOADING);
+    t_ctx->q_torrent->setStatus("DOWNLOADING");
     _qt_list_model->append(t_ctx->q_torrent);
     _qt_list_model->notifyOfUpdate(t_ctx->q_torrent);
 
