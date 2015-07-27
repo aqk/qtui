@@ -48,7 +48,6 @@ Rectangle {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 height: itemHeight
-
                 RowLayout {
                     anchors.left: parent.left
                     anchors.right: parent.right
@@ -58,12 +57,12 @@ Rectangle {
                         id: statusColumn
                         Rectangle {
                             id: statusButton
-                            width: 60
+                            width: 120
                             height: 20
                             radius: 2
                             color: "#2bcaff"
                             UIText {
-                                text: status
+                                text: torrentStatus
                                 color: "white"
                                 font.bold: true
                                 font.pixelSize: 10

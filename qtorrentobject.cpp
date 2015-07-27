@@ -111,13 +111,13 @@ void QTorrentObject::setdateTimeAdded(const QDateTime &dateTimeAdded)
     emit dateTimeAddedChanged(dateTimeAdded);
 }
 
-void QTorrentObject::setStatus(const QString &status)
+void QTorrentObject::setTorrentStatus(const QString &status)
 {
     m_status = status;
-    emit statusChanged(status);
+    emit torrentStatusChanged(status);
 }
 
-QString QTorrentObject::status() const {
+QString QTorrentObject::torrentStatus() const {
     return m_status;
 }
 

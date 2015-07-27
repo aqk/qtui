@@ -19,7 +19,7 @@ public:
     Q_PROPERTY(int totalBytes           READ totalBytes      WRITE setTotalBytes        NOTIFY totalBytesChanged)
     Q_PROPERTY(int bytesDownloaded      READ bytesDownloaded WRITE setBytesDownloaded   NOTIFY bytesDownloadedChanged)
     Q_PROPERTY(QDateTime dateTimeAdded  READ dateTimeAdded   WRITE setdateTimeAdded     NOTIFY dateTimeAddedChanged)
-    Q_PROPERTY(QString status           READ status          WRITE setStatus            NOTIFY statusChanged)
+    Q_PROPERTY(QString torrentStatus    READ torrentStatus   WRITE setTorrentStatus     NOTIFY torrentStatusChanged)
 
     // Getters/Setters
     int bytesDownloaded() const;
@@ -48,8 +48,8 @@ public:
     QDateTime dateTimeAdded() const;
     void setdateTimeAdded(const QDateTime &dateTimeAdded);
 
-    void setStatus(const QString& status);
-    QString status() const;
+    void setTorrentStatus(const QString& status);
+    QString torrentStatus() const;
 
 signals:
     void nameChanged(QString newName);
@@ -57,7 +57,7 @@ signals:
     void totalBytesChanged(int newTotalBytes);
     void bytesDownloadedChanged(int newBytesDownloaded);
     void dateTimeAddedChanged(QDateTime newdateTimeAdded);
-    void statusChanged(QString status);
+    void torrentStatusChanged(QString status);
 public slots:
 private:
     QString m_name;

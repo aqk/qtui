@@ -21,7 +21,8 @@ public:
         SpeedRole = Qt::UserRole+2,
         TotalBytesRole = Qt::UserRole+3,
         BytesDownloadedRole = Qt::UserRole+4,
-        dateTimeAddedRole = Qt::UserRole+5
+        dateTimeAddedRole = Qt::UserRole+5,
+        torrentStatusRole = Qt::UserRole+6
     };
     explicit QTorrentListModel(QObject *parent = 0);
 
