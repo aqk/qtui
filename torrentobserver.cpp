@@ -16,6 +16,7 @@ void TorrentListObserver::onTorrentAdded(const Argo::SHA1Hash &hash)
 
     torrent->setName(hash.value);
     torrent->setTotalBytes(1000);
+    torrent->setStatus(QTorrentObject::Status::DOWNLOADING);
     _qt_list_model->append(torrent);
     _qt_list_model->notifyOfUpdate(torrent);
     printf("Torrent Added\n");

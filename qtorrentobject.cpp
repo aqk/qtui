@@ -1,7 +1,7 @@
 #include "qtorrentobject.h"
 
 QTorrentObject::QTorrentObject(QObject *parent) : QObject(parent)
-  , m_name(""), m_speed(0), m_totalBytes(0), m_bytesDownloaded(0), m_dateTimeAdded()
+  , m_name(""), m_speed(0), m_totalBytes(0), m_bytesDownloaded(0), m_dateTimeAdded(), m_status(Status::WAITING)
 {
     m_dateTimeAdded = QDateTime::currentDateTime();
 }
@@ -74,7 +74,13 @@ void QTorrentObject::setdateTimeAdded(const QDateTime &dateTimeAdded)
     emit dateTimeAddedChanged(dateTimeAdded);
 }
 
+void QTorrentObject::setStatus(Status status)
+{
+    m_status = status;
+    emit statusChanged(status);
+}
 
-
-
+QTorrentObject::Status QTorrentObject::status() const {
+    return m_status;
+}
 
