@@ -9,14 +9,14 @@ Rectangle {
     property variant cardModel
     property int itemHeight: 50
     property color separatorColor: "#eaeaea"
+
     ColumnLayout {
         anchors.fill: parent
         spacing: 3
         UIText {
             id: title
             text: cardTitle
-            font.pixelSize: 13
-            font.bold: true
+            font.pixelSize: 10
             color: "#c1c1c1"
             Layout.preferredHeight: 15
             Layout.fillHeight: true
@@ -25,7 +25,7 @@ Rectangle {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.leftMargin: 20
-            anchors.topMargin: 10
+            anchors.topMargin: 20
 
         }
         Rectangle {
@@ -36,7 +36,7 @@ Rectangle {
             anchors.rightMargin: 20
             anchors.top: title.bottom
             anchors.topMargin: 5
-            height: 1.5
+            height: 1
             radius: 1
             color: separatorColor
         }
@@ -173,6 +173,17 @@ Rectangle {
             highlightFollowsCurrentItem: false
             focus: true
         }
+
+
+    }
+    Rectangle {
+        z: -1
+        x: -1
+        radius: 2
+        color: "#e0e0e0"
+        opacity: 0.3
+        width: parent.width + 2
+        height: parent.height + 1
     }
 }
 
