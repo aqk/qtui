@@ -28,7 +28,7 @@ HEADERS  += mainwindow.h \
     qtorrentobject.h \
     argoqmlcontext.h
 
-FORMS    += mainwindow.ui
+FORMS    +=
 
 RESOURCES += \
     qml/qml.qrc
