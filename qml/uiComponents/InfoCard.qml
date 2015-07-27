@@ -103,12 +103,13 @@ Rectangle {
                             Layout.minimumWidth: 100
                             UIText {
                                 text: name
+                                clip: true
                                 color: "#3a3a3a"
-                                font.pixelSize: 15
+                                font.pixelSize: 10
                                 anchors.left: parent.left
-                                anchors.leftMargin: 9
+                                anchors.leftMargin: 5
                                 anchors.top: parent.top
-                                anchors.topMargin: 9
+                                anchors.topMargin: 10
                             }
                         }
                         DLProgressBar {
@@ -116,6 +117,7 @@ Rectangle {
                             Layout.fillHeight: true
                             Layout.minimumWidth: 50
                             Layout.preferredWidth: 100
+                            Layout.preferredHeight: itemHeight
                             anchors.right: parent.right
                             total: totalBytes
                             completed: bytesDownloaded

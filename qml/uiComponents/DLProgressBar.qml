@@ -6,7 +6,7 @@ import QtGraphicalEffects 1.0
 Item {
     id: progressBar
     property real progress: 0
-    property int pbHeight: 8
+    property int pbHeight: 10
     property int pbWidth: 70
 
     property int total

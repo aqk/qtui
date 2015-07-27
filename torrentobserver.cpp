@@ -14,7 +14,8 @@ void TorrentListObserver::onTorrentAdded(const Argo::SHA1Hash &hash)
     QSharedPointer<QTorrentObject> torrent(new QTorrentObject);
     _qtorrent_list.append(torrent);
 
-    torrent->setName(hash.value);
+    // TODO: Query the universe for a torrent name
+    torrent->setName(QByteArray(hash.value, 20).toBase64());
     torrent->setTotalBytes(1000);
     torrent->setStatus(QTorrentObject::Status::DOWNLOADING);
     _qt_list_model->append(torrent);
