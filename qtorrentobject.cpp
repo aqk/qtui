@@ -1,7 +1,8 @@
 #include "qtorrentobject.h"
 
 QTorrentObject::QTorrentObject(QObject *parent) : QObject(parent)
-  , m_name(""), m_speed(0), m_totalBytes(0), m_bytesDownloaded(0), m_dateTimeAdded(), m_status(Status::WAITING)
+  , m_name(""), m_speed(0), m_totalBytes(0), m_bytesDownloaded(0), m_dateTimeAdded(), m_status(Status::WAITING),
+    m_have_pieces(0)
 {
     m_dateTimeAdded = QDateTime::currentDateTime();
 }
@@ -40,8 +41,34 @@ int QTorrentObject::totalBytes() const
 void QTorrentObject::setTotalBytes(int totalBytes)
 {
     m_totalBytes = totalBytes;
-    emit totalBytesChanged(totalBytes);
+    emit totalBytesChanged(m_totalBytes);
 }
+
+int QTorrentObject::piecesDownloaded() const
+{
+    return m_have_pieces;
+}
+
+void QTorrentObject::setPiecesDownloaded(int piecesDownloaded)
+{
+    m_have_pieces = piecesDownloaded;
+}
+
+int QTorrentObject::totalPieces() const
+{
+    return m_total_pieces;
+}
+
+void QTorrentObject::setTotalPieces(int totalPieces)
+{
+    m_total_pieces = totalPieces;
+}
+
+void QTorrentObject::setPieceSize(int pieceSize)
+{
+    m_pieceSize = pieceSize;
+}
+
 int QTorrentObject::speed() const
 {
     return m_speed;
@@ -61,6 +88,16 @@ void QTorrentObject::setName(const QString &name)
 {
     m_name = name;
     emit nameChanged(name);
+}
+
+const Argo::SHA1Hash& QTorrentObject::hash() const
+{
+    return m_hash;
+}
+
+void QTorrentObject::setHash(const Argo::SHA1Hash &hash)
+{
+    m_hash = hash;
 }
 
 QDateTime QTorrentObject::dateTimeAdded() const

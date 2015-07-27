@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QDate>
 
+#include "ArgoLoader.h"
+
 class QTorrentObject : public QObject
 {
     Q_OBJECT
@@ -25,14 +27,25 @@ public:
     int bytesDownloaded() const;
     void setBytesDownloaded(int bytesDownloaded);
 
+    int piecesDownloaded() const;
+    void setPiecesDownloaded(int piecesDownloaded);
+
     int totalBytes() const;
     void setTotalBytes(int totalBytes);
+
+    int totalPieces() const;
+    void setTotalPieces(int totalPieces);
+
+    void setPieceSize(int pieceSize);
 
     int speed() const;
     void setSpeed(int speed);
 
     QString name() const;
     void setName(const QString &name);
+
+    const Argo::SHA1Hash& hash() const;
+    void setHash(const Argo::SHA1Hash &hash);
 
     QDateTime dateTimeAdded() const;
     void setdateTimeAdded(const QDateTime &dateTimeAdded);
@@ -52,9 +65,12 @@ private:
     QString m_name;
     int m_speed;
     int m_totalBytes;
+    int m_total_pieces;
+    int m_have_pieces;
     int m_bytesDownloaded;
+    int m_pieceSize;
     QDateTime m_dateTimeAdded;
-    Status m_status;
+    Argo::SHA1Hash m_hash;
+	Status m_status;
 };
-
 #endif // QTORRENTOBJECT_H

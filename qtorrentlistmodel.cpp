@@ -94,4 +94,9 @@ QHash<int, QByteArray> QTorrentListModel::roleNames() const {
     return m_roleNames;
 }
 
+QSharedPointer<QTorrentObject> QTorrentListModel::lookupTorrent(const Argo::SHA1Hash &hash) {
+    QList<QSharedPointer<QTorrentObject>>::iterator it =
+            std::find_if(m_torrents.begin(), m_torrents.end(), [hash] (QSharedPointer<QTorrentObject> t) { return t->hash() == hash; } );
+    return it == m_torrents.end() ? QSharedPointer<QTorrentObject>() : (*it);
+}
 

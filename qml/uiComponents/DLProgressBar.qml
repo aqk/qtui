@@ -83,7 +83,7 @@ Item {
     }
 
     function formatBytes(bytes) {
-        return bytes/(1024 * 1024) + "MB"
+        return (bytes/(1024 * 1024)).toFixed(2) + "MB"
     }
 
     function updateProgressBar() {
@@ -93,7 +93,7 @@ Item {
         return clamp((this.completed/this.total)*progressBar.pbWidth, 0, progressBar.pbWidth)
     }
     Component.onCompleted: {
-        total = 100
+        //total = 100
         completedString = ""
         totalString = ""
         separatorString =""

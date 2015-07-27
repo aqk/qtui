@@ -15,15 +15,20 @@ public:
 
 private:
         QTorrentListModel* _qt_list_model;
-        QList<QSharedPointer<QTorrentObject> > _qtorrent_list;
+        //QList<QSharedPointer<QTorrentObject> > _qtorrent_list;
 };
 
 class TorrentFileObserver : public Argo::ITorrentEventObserver {
 public:
+    TorrentFileObserver(const Argo::SHA1Hash &hash);
     virtual void onMetadataReceived() override;
     virtual void onPieceCompleted(int piece) override;
     virtual void onTorrentCompleted() override;
     virtual void onTorrentReaped() override;
+
+private:
+    Argo::SHA1Hash _hash;
+    QSharedPointer<QTorrentObject> _q_torrent_object;
 };
 
 #endif // TORRENTOBSERVER_H

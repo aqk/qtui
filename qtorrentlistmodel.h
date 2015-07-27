@@ -9,6 +9,7 @@
 
 
 #include "qtorrentobject.h"
+#include "ArgoLoader.h"
 
 class QTorrentListModel : public QAbstractListModel
 {
@@ -38,6 +39,8 @@ public:
     QSharedPointer<QTorrentObject> get(int index);
     int count();
     void notifyOfUpdate(QSharedPointer<QTorrentObject> torrent);
+
+    QSharedPointer<QTorrentObject> lookupTorrent(const Argo::SHA1Hash& hash);
 protected:
     virtual QHash<int, QByteArray> roleNames() const override;
 signals:
