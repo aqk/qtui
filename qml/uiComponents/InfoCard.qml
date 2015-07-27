@@ -116,12 +116,12 @@ Rectangle {
                             Layout.fillWidth: true
                             Layout.fillHeight: true
                             Layout.minimumWidth: 50
-                            Layout.preferredWidth: 100
+                            Layout.preferredWidth: 250
                             Layout.preferredHeight: itemHeight
                             anchors.right: parent.right
                             total: totalBytes
                             completed: bytesDownloaded
-                            pbWidth: 100
+                            pbWidth: 250
                             anchors.top: parent.top
                             anchors.topMargin: 10
                         }
@@ -187,5 +187,7 @@ Rectangle {
         width: parent.width + 2
         height: parent.height + 1
     }
+
+
 }
 

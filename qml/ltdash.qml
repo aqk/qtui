@@ -17,6 +17,8 @@ Window {
     property int navColItemHeight: 50
     property color navTextColor: "white"
 
+    property bool mainView:true
+
     color: "#f1eeee"
 
 
@@ -83,17 +85,38 @@ Window {
                 }
             }
 
-            Repeater {
-                model: ["DASHBOARD", "PEERS"]
-                NavButton {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    Layout.maximumHeight: root.navColItemHeight
-                    Layout.preferredWidth: root.navColWidth
-                    navText: modelData
-                }
 
+            NavButton {
+                id:navBtnDash
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.maximumHeight: root.navColItemHeight
+                Layout.preferredWidth: root.navColWidth
+                navText: "DASHBOARD"
+                selected: mainView
+                onButtonClicked: {
+                    mainView = true;
+                    topPeerCard.visible = false;
+                    mainDownloadList.visible = true;
+               }
             }
+
+            NavButton {
+                id: navBtnPeers
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                Layout.maximumHeight: root.navColItemHeight
+                Layout.preferredWidth: root.navColWidth
+                navText: "PEERS"
+                selected: !mainView
+                onButtonClicked: {
+                    mainView = false;
+                    topPeerCard.visible = true;
+                    mainDownloadList.visible = false;
+
+                }
+            }
+
             Rectangle {
                 id: progress
                 Layout.fillHeight: true
@@ -150,6 +173,7 @@ Window {
                     Layout.preferredWidth: 150
                     Layout.preferredHeight: 300
                     cardModel: topPeersModel
+                    visible: false
                 }
 
                 InfoCard {
@@ -160,6 +184,17 @@ Window {
                     Layout.preferredWidth: 400
                     Layout.preferredHeight: 300
                     cardModel: downloadListModel
+                    visible:true
+                }
+
+                Component.onCompleted: state = "visible"
+                states: State {
+                   name: "visible"
+                   PropertyChanges { target: cardLayout; x: 100 }
+                }
+
+                transitions: Transition {
+                    PropertyAnimation { duration: 3000; easing.type: Easing.InOutQuad}
                 }
             }
 
@@ -178,5 +213,4 @@ Window {
 
 
     }
-
 }
