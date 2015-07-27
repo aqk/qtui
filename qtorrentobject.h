@@ -38,7 +38,7 @@ public:
     void setdateTimeAdded(const QDateTime &dateTimeAdded);
 
     void setStatus(Status status);
-    int status() const;
+    Status status() const;
 
 signals:
     void nameChanged(QString newName);
