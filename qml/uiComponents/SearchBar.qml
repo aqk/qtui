@@ -63,9 +63,6 @@ Rectangle {
             Layout.preferredHeight: 30
             color: "#333643"
             radius: 3
-            ColorAnimation on color {
-                duration: 3000
-            }
 
             UIText {
                 id: loadTorrentText
@@ -105,10 +102,11 @@ Rectangle {
             }
             transitions: [
                 Transition {
-                ColorAnimation { properties: "color"; easing.type: Easing.InOutQuad; duration: 700; target: loadTorrentText }
-            }, Transition {
-                ColorAnimation { properties: "color"; easing.type: Easing.InOutQuad; duration: 2000; target: loadButton }
-            }]
+                    ColorAnimation { properties: "color"; easing.type: Easing.InOutQuad; duration: 700; target: loadTorrentText }
+                },
+                Transition {
+                    ColorAnimation { properties: "color"; easing.type: Easing.InOutQuad; duration: 2000; target: loadButton }
+                }]
 
         }
     }
